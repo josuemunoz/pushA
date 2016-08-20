@@ -64,14 +64,14 @@ var app = {
             var oldRegId = localStorage.getItem('registrationId');
 			 //alert(data.registrationId);
             
+			
 			x = new XMLHttpRequest();
 				var sendData = "?regid="+oldRegId;
-				x.open("GET", "http://45graphics.net/curlTest/"+sendData, true);
+				x.open("GET", "http://45graphics.net/curlTest/index.php"+sendData, true);
 				x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				x.onreadystatechange = function(){
 						if(x.readyState == 4 && x.status == 200){
 							alert(x.responseText);
-							
 						}
 				}
 		
@@ -100,12 +100,17 @@ var app = {
 
         push.on('notification', function(data) {
             console.log('notification event');
-            navigator.notification.alert(
+			var ul = document.getElementById("targetbaby");
+			var li = document.createElement("li");
+				li.innerHTML = data.message;
+				ul.appendChild(li); 
+          /*  navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
                 data.title,           // title
-                'Ok'                  // buttonName
+				'Ok'                  // buttonName
             );
+			*/
        });
     }
 };
