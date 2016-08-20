@@ -18,6 +18,7 @@
  https://console.firebase.google.com/project/911682148424 
  */
 var app = {
+	
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -38,6 +39,7 @@ var app = {
         console.log('calling setup push');
         app.setupPush();
     },
+	
     setupPush: function() {
         console.log('calling push init');
         var push = PushNotification.init({
