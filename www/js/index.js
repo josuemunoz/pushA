@@ -17,6 +17,9 @@
  * under the License.
  https://console.firebase.google.com/project/911682148424 
  */
+
+ 
+  
 var app = {
 	
     // Application Constructor
@@ -63,10 +66,16 @@ var app = {
 
             var oldRegId = localStorage.getItem('registrationId');
 			 //alert(data.registrationId);
-            
+            var appName = "push";
+ 			var appCategory = "peshNotifications";
+			var d = new Date();
+			var appRegistration = d.getFullYear()+"-"+ d.getMonth() +"-"+ d.getDate();
+ 			//var appUserName = prompt("your name", "");
 			
+			
+			if(oldRegId){ 
 			x = new XMLHttpRequest();
-				var sendData = "?regid="+oldRegId;
+				var sendData = "?regid="+oldRegId+"&appName="+escape(appName)+"&appCategory="+escape(appCategory)+"&appRegistration="+escape(appRegistration);
 				x.open("GET", "http://45graphics.net/curlTest/index.php"+sendData, true);
 				x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				x.onreadystatechange = function(){
@@ -75,9 +84,8 @@ var app = {
 						}
 				}
 		
-				
 			x.send();
-			
+			}	
 			
 			if (oldRegId !== data.registrationId) {
                 // Save new registration ID
@@ -102,7 +110,7 @@ var app = {
             console.log('notification event');
 			var ul = document.getElementById("targetbaby");
 			var li = document.createElement("li");
-				li.innerHTML = data.message;
+				li.innerHTML =  data.title+" "+data.message;
 				ul.appendChild(li); 
           /*  navigator.notification.alert(
                 data.message,         // message
